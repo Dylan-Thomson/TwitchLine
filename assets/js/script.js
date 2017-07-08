@@ -12,13 +12,15 @@ $(function() {
 					var currentStream = data;
 					console.log(currentStream, currentChannel);
 
-					// Display online/offline status - if there is no stream data, channel is offline
+					// If 404 status, channel does not exist 
 					if(currentChannel.status == 404) {
 						$("#popular").append("<div>" + channel + " does not exist</div>");
 					}
+					// If stream is not null, display stream_type i.e. "live"
 					else if(currentStream.stream) {
 						$("#popular").append("<div>" + currentChannel.display_name + " - " + currentStream.stream.stream_type + "</div>");		
 					}
+					// If stream is null, the channel is not currently streaming
 					else {
 						$("#popular").append("<div>" + currentChannel.display_name + " - " + "offline" + "</div>");		
 					}		
