@@ -3,15 +3,18 @@ var popularChannels = ["dansgaming", "brunofin", "comster404", "ESL_SC2", "Ogami
 
 // Document Ready
 $(function() {
+	displayPopularChannels();
+});
+
+// Get channel and stream data for popular channels and update div with id #popular
+function displayPopularChannels() {	
 	popularChannels.forEach(function(channel) {
 		// Get channel data for current channel
-		getChannel(channel, function(data) {
+		getPopularChannel(channel, function(data) {
 			var currentChannel = data;
 				// Get Stream data (if any) for current channel
-				getStream(channel, function(data) {
+				getPopularStream(channel, function(data) {
 					var currentStream = data;
-					console.log(currentStream, currentChannel);
-
 					// If 404 status, channel does not exist 
 					if(currentChannel.status == 404) {
 						$("#popular").append("<div>" + channel + " does not exist</div>");
@@ -27,10 +30,10 @@ $(function() {
 				});
 		});
 	});
-});
+}
 
 // Request Channel Data
-function getChannel(channel, callback) {
+function getPopularChannel(channel, callback) {
 	// Using wind-bow because Twitch.tv API now requires a key and this is a public repo
 	var url = "https://wind-bow.gomix.me/twitch-api/channels/" + channel + "?callback=?";
 	$.getJSON(url, function(data) {
@@ -41,7 +44,7 @@ function getChannel(channel, callback) {
 }
 
 // Request Stream data
-function getStream(channel, callback) {
+function getPopularStream(channel, callback) {
 	// Using wind-bow because Twitch.tv API now requires a key and this is a public repo
 	var url = "https://wind-bow.gomix.me/twitch-api/streams/" + channel + "?callback=?";
 	$.getJSON(url, function(data) {
