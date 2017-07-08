@@ -1,10 +1,14 @@
-// Setup popular channels array
-var popularChannels = ["dansgaming", "brunofin", "comster404", "ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
-
 // Document Ready
 $(function() {
 	displayPopularChannels();
+	getFeaturedStreams();
 });
+
+/*******************************************************************************************************************************
+	Logic for popular channels
+*******************************************************************************************************************************/
+// Setup popular channels array - comster404 and brunofin are nonexistent accounts for testing
+var popularChannels = ["dansgaming", "brunofin", "comster404", "ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
 
 // Get channel and stream data for popular channels and update div with id #popular
 function displayPopularChannels() {	
@@ -21,11 +25,11 @@ function displayPopularChannels() {
 					}
 					// If stream is not null, display stream_type i.e. "live"
 					else if(currentStream.stream) {
-						$("#popular").append("<div>" + currentChannel.display_name + " - " + currentStream.stream.stream_type + "</div>");		
+						$("#popular").append("<div>" + currentChannel.display_name + " is playing " + currentStream.stream.game + "</div>");		
 					}
 					// If stream is null, the channel is not currently streaming
 					else {
-						$("#popular").append("<div>" + currentChannel.display_name + " - " + "offline" + "</div>");		
+						$("#popular").append("<div>" + currentChannel.display_name + " is " + "offline" + "</div>");		
 					}		
 				});
 		});
@@ -53,3 +57,19 @@ function getPopularStream(channel, callback) {
 		}
 	});
 }
+
+/*******************************************************************************************************************************
+	Logic for featured streams
+*******************************************************************************************************************************/
+function getFeaturedStreams() {
+	var url = "https://wind-bow.glitch.me/twitch-api/streams/featured?callback=?";
+	$.getJSON(url, function(data) {
+		displayFeaturedStreams(data);
+	});
+}
+
+function displayFeaturedStreams(data) {
+	for(var i=0; i<data.featured.length; i++) {
+		$("#featured").append("<div>" + data.featured[i].stream.channel.display_name + " is playing " + data.featured[i].stream.game + "</div>");	
+	}
+} 
