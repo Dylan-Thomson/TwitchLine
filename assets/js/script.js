@@ -7,25 +7,29 @@ $(function() {
 		// Get channel data for current channel
 		getChannel(channel, function(data) {
 			var currentChannel = data;
-			if(currentChannel.status == 404) {
-				$("#popular").append("<div>" + channel + " does not exist</div>");
-			}
-			else {
 				// Get Stream data (if any) for current channel
 				getStream(channel, function(data) {
 					var currentStream = data;
 					// Display online/offline status - if there is no stream data, channel is offline
-					if(currentStream.stream) {
-						$("#popular").append("<div>" + currentChannel.display_name + " - " + currentStream.stream.stream_type + "</div>");				
+					console.log(currentStream, currentChannel);
+					if(currentChannel.status == 404) {
+						$("#popular").append("<div>" + channel + " does not exist</div>");
+					}
+					else if(currentStream.stream) {
+						$("#popular").append("<div>" + currentChannel.display_name + " - " + currentStream.stream.stream_type + "</div>");		
 					}
 					else {
-						$("#popular").append("<div>" + currentChannel.display_name + " - " + "offline" + "</div>");				
+						$("#popular").append("<div>" + currentChannel.display_name + " - " + "offline" + "</div>");		
 					}		
 				});
-			}
 		});
 	});
+
 });
+
+function displayPopular(arr) {
+
+}
 
 // Request Channel Data
 function getChannel(channel, callback) {
@@ -47,5 +51,4 @@ function getStream(channel, callback) {
 			callback(data);
 		}
 	});
-
 }
