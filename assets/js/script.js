@@ -10,8 +10,9 @@ $(function() {
 				// Get Stream data (if any) for current channel
 				getStream(channel, function(data) {
 					var currentStream = data;
-					// Display online/offline status - if there is no stream data, channel is offline
 					console.log(currentStream, currentChannel);
+
+					// Display online/offline status - if there is no stream data, channel is offline
 					if(currentChannel.status == 404) {
 						$("#popular").append("<div>" + channel + " does not exist</div>");
 					}
@@ -24,12 +25,7 @@ $(function() {
 				});
 		});
 	});
-
 });
-
-function displayPopular(arr) {
-
-}
 
 // Request Channel Data
 function getChannel(channel, callback) {
