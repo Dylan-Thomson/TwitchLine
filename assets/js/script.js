@@ -19,28 +19,40 @@ function initPopular() {
 		// Get stream data
 		$.getJSON(url, function(streamData) {
 			if(streamData.stream) { // Channel is currently streaming
-				// console.log(streamData.stream.channel.display_name);
-				$("#popular").append("<div><img src='" + streamData.stream.channel.logo + "'>" + streamData.stream.channel.display_name + " currently streaming: " + streamData.stream.game + "</div>");
+				$("#popular").append(channelHTML(streamData.stream.channel, streamData.stream));
 			}
 			else { // If streamData.stream is null, channel is offline. We need to make another call to get the channel data
 				var url = "https://api.twitch.tv/kraken/channels/" + channel + "?client_id=yikjpcdax5o1rsaaw3g838aetcbsby";
 				$.getJSON(url, function(channelData) {
-					// console.log(channelData.display_name);
-					$("#popular").append("<div><img src='" + channelData.logo + "'>" + channelData.display_name + " currently offline</div>");
+					$("#popular").append(channelHTML(channelData));
 				})
 				.fail(function(jqXHR) { 
 					if(jqXHR.status == 404) { // Handle 404 status where channel does not exist
-						// console.log(channel, "404 not found");
-						$("#popular").append("<div><img src='./assets/images/twitchlogo.png'>" + channel + " returned 404 error: Unable to find channel</div>");
-					}
-					else { // Handle other errors
-						// console.log("other non-handled error type");
-						$("#popular").append("<div>" + channel + "unable to get channel</div>");
+						$("#popular").append(channelHTML(null, null, channel));
 					}
 				});
 			}
 		});
 	});
+}
+
+// Accepts up to 3 parameters for channel data, stream data, and channel name
+// Builds and returns an HTML string that can be appended to the page
+function channelHTML(channel, stream, name) {
+	var result = "<div class='channel'><img src='";
+	if(channel) {
+		result += channel.logo + "'>" + channel.display_name;
+		if(stream) {
+			result += " currently streaming: " + stream.game + "</div>";
+		}
+		else {
+			result += " currently offline</div>";
+		}
+	}
+	else { //404
+		result += "./assets/images/twitchlogo.png'>" + name + " returned 404 error: Unable to find channel</div>";
+	}
+	return result;
 }
 
 /*******************************************************************************************************************************
@@ -51,9 +63,7 @@ function initFeatured() {
 	var url = "https://api.twitch.tv/kraken/streams/featured/?client_id=yikjpcdax5o1rsaaw3g838aetcbsby";
 	$.getJSON(url, function(data) {
 		for(var i=0; i<data.featured.length; i++) {
-			$("#featured").append("<div><img src='" + data.featured[i].stream.channel.logo + "'>" + data.featured[i].stream.channel.display_name + " is playing " + data.featured[i].stream.game + "</div>");
-			// if(data.featured[i].stream.channel.language == "en") {
-			// }
+			$("#featured").append(channelHTML(data.featured[i].stream.channel, data.featured[i].stream));
 		}
 	});
 }
