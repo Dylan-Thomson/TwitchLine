@@ -1,14 +1,15 @@
 img {
 	width: 100px;
 	margin-right: 10px;
+	background: white;
 }
 
-span {
+#selectPopular, #selectFeatured {
 	margin: auto 0;
 	padding: 20px;
 }
 
-#popular div, #featured div {
+.channel {
 	background: #F5F5F5;
 	margin: 30px;
 	border: 1px dotted #ABABAB;
