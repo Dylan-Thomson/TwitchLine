@@ -2,6 +2,7 @@
 $(function() {
 	initPopular();
 	initFeatured();
+	initListeners();
 });
 
 /*******************************************************************************************************************************
@@ -53,6 +54,25 @@ function initFeatured() {
 			$("#featured").append("<div><img src='" + data.featured[i].stream.channel.logo + "'>" + data.featured[i].stream.channel.display_name + " is playing " + data.featured[i].stream.game + "</div>");
 			// if(data.featured[i].stream.channel.language == "en") {
 			// }
+		}
+	});
+}
+
+function initListeners() {
+	$("#selectFeatured").on("click", function() {
+		if($("#featured").hasClass("hidden")) {
+			$("#featured").removeClass("hidden");
+			$("#popular").addClass("hidden");
+			$("#selectFeatured").addClass("selected");
+			$("#selectPopular").removeClass("selected");
+		}
+	});
+	$("#selectPopular").on("click", function() {
+		if($("#popular").hasClass("hidden")) {
+			$("#popular").removeClass("hidden");
+			$("#featured").addClass("hidden");
+			$("#selectPopular").addClass("selected");
+			$("#selectFeatured").removeClass("selected");
 		}
 	});
 }

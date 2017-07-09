@@ -9,3 +9,8 @@ img {
 	margin: 10px;
 	border: 1px dotted #ABABAB;
 }
+
+.selected {
+	background: #6441A4;
+	color: #FFF;
+}
