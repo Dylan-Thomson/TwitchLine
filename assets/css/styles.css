@@ -1,0 +1,11 @@
+img {
+	width: 50px;
+	margin-right: 10px;
+}
+
+#popular div, #featured div {
+	background: #F5F5F5;
+	padding: 50px;
+	margin: 10px;
+	border: 1px dotted #ABABAB;
+}
