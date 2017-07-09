@@ -4,12 +4,13 @@ img {
 }
 
 span {
-	margin: 10px;
+	margin: auto 0;
+	padding: 20px;
 }
 
 #popular div, #featured div {
 	background: #F5F5F5;
-	margin: 10px;
+	margin: 30px;
 	border: 1px dotted #ABABAB;
 }
 

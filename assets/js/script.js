@@ -75,4 +75,22 @@ function initListeners() {
 			$("#selectFeatured").removeClass("selected");
 		}
 	});
+	$("#selectPopular").hover(
+		function () {
+			$("#selectPopular").addClass("selected");
+		},
+		function () {
+			if($("#popular").hasClass("hidden")) {
+				$("#selectPopular").removeClass("selected");
+			}
+	});
+	$("#selectFeatured").hover(
+		function () {
+			$("#selectFeatured").addClass("selected");
+		},
+		function () {
+			if($("#featured").hasClass("hidden")) {
+				$("#selectFeatured").removeClass("selected");
+			}
+	});
 }
