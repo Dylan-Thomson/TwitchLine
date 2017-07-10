@@ -52,6 +52,11 @@ function initFeatured() {
 }
 
 function initListeners() {
+	initSelectListeners();
+	initSearchListeners();
+}
+
+function initSelectListeners() {
 	$("#selectFeatured").on("click", function() {
 		if($("#featured").hasClass("hidden")) {
 			$("#featured").removeClass("hidden");
@@ -86,8 +91,9 @@ function initListeners() {
 				$("#selectFeatured").removeClass("selected");
 			}
 	});
+}
 
-
+function initSearchListeners() {
 	$("#searchChannels").submit(function(event) {
 			event.preventDefault();
 			// Remove old listeners
