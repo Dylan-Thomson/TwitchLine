@@ -59,10 +59,7 @@ function initFeatured(num) {
 function initListeners() {
 	initSelectListeners();
 	initSearchListeners();
-	$("#selectAmount").on("change", function(data) {
-		$("#featuredOutput").html("");
-		initFeatured($("select option:selected").val());
-	});
+	initFeaturedAmountListeners();
 }
 
 // Section select functionality
@@ -166,6 +163,13 @@ function initSearchListeners() {
 					alert("404 channel not found");
 				}
 			});
+	});
+}
+
+function initFeaturedAmountListeners() {
+	$("#selectAmount").on("change", function(data) {
+	$("#featuredOutput").html("");
+		initFeatured($("select option:selected").val());
 	});
 }
 
