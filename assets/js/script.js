@@ -5,6 +5,7 @@ $(function() {
 	initListeners();
 });
 
+// https://api.twitch.tv/kraken/search/games?query=starcraft%202&type=suggest&client_id=yikjpcdax5o1rsaaw3g838aetcbsby&
 /*******************************************************************************************************************************
 	Logic for popular channels
 *******************************************************************************************************************************/
@@ -18,17 +19,17 @@ function initPopular() {
 
 		// Get stream data
 		$.getJSON(url, function(streamData) {
-			if(streamData.stream) { // Channel is currently streaming
-				$("#popular").append(channelHTML(streamData.stream.channel, streamData.stream));
+			if(streamData.stream) { // Channel is currently streaming, channel data is included in stream data
+				$("#popularOutput").append(channelHTML(streamData.stream.channel, streamData.stream));
 			}
 			else { // If streamData.stream is null, channel is offline. We need to make another call to get the channel data
 				var url = "https://api.twitch.tv/kraken/channels/" + channel + "?client_id=yikjpcdax5o1rsaaw3g838aetcbsby";
 				$.getJSON(url, function(channelData) {
-					$("#popular").append(channelHTML(channelData));
+					$("#popularOutput").append(channelHTML(channelData));
 				})
 				.fail(function(jqXHR) { 
 					if(jqXHR.status == 404) { // Handle 404 status where channel does not exist
-						$("#popular").append(channelHTML(null, null, channel));
+						$("#popularOutput").append(channelHTML(null, null, channel));
 					}
 				});
 			}
@@ -36,24 +37,6 @@ function initPopular() {
 	});
 }
 
-// Accepts up to 3 parameters for channel data, stream data, and channel name
-// Builds and returns an HTML string that can be appended to the page
-function channelHTML(channel, stream, name) {
-	var result = "<div class='channel'><img src='";
-	if(channel) {
-		result += channel.logo + "'>" + channel.display_name;
-		if(stream) {
-			result += " currently streaming: " + stream.game + "</div>";
-		}
-		else {
-			result += " currently offline</div>";
-		}
-	}
-	else { //404
-		result += "./assets/images/twitchlogo.png'>" + name + " returned 404 error: Unable to find channel</div>";
-	}
-	return result;
-}
 
 /*******************************************************************************************************************************
 	Logic for featured streams
@@ -103,4 +86,59 @@ function initListeners() {
 				$("#selectFeatured").removeClass("selected");
 			}
 	});
+
+
+	$("#searchChannels").submit(function(event) {
+			event.preventDefault();
+			// Remove old listeners
+			$("#addResult").off("click");
+			$("#cancelResult").off("click");
+
+			//clear old search
+			$("#searchResults").html("");
+
+			var searchTerm = $("#searchInput").val();
+			$("#searchInput").val("");
+			var url = "https://api.twitch.tv/kraken/search/channels?query=" + searchTerm + "&type=suggest&client_id=yikjpcdax5o1rsaaw3g838aetcbsby&&callback=?";
+			$.getJSON(url, function(data) {
+				console.log(data);
+				var html = "<div class='channel'><img src='" + data.channels[0].logo + "'>" + data.channels[0].display_name + "</div>"
+				$("#searchResults").append(html);
+				$("#searchWindow").removeClass("hidden");
+
+
+
+				$("#addResult").on("click", function() {
+					// see if streaming
+
+
+					$("#popularOutput").prepend(html);
+					$("#searchResults").html("");
+					$("#searchWindow").addClass("hidden");
+				});
+				$("#cancelResult").on("click", function() {
+					$("#searchResults").html("");
+					$("#searchWindow").addClass("hidden");
+				});
+			});
+	});
+}
+
+// Accepts 1 to 3 parameters for channel data, stream data, and channel name
+// Builds and returns an HTML string that can be appended to the page
+function channelHTML(channel, stream, name) {
+	var result = "<div class='channel'><img src='";
+	if(channel) {
+		result += channel.logo + "'>" + channel.display_name;
+		if(stream) {
+			result += " currently streaming: " + stream.game + "</div>";
+		}
+		else {
+			result += " currently offline</div>";
+		}
+	}
+	else { //404
+		result += "./assets/images/twitchlogo.png'>" + name + " returned 404 error: Unable to find channel</div>";
+	}
+	return result;
 }

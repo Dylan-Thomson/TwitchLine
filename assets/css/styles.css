@@ -4,14 +4,24 @@ img {
 	background: white;
 }
 
+h2 {
+	
+}
+
 #selectPopular, #selectFeatured {
 	margin: auto 0;
 	padding: 20px;
+	cursor: pointer;
+}
+
+#popular, #featured {
+	margin: 50px auto;
+	width: 60%;
 }
 
 .channel {
 	background: #F5F5F5;
-	margin: 30px;
+	margin: 10px auto;
 	border: 1px dotted #ABABAB;
 }
 
