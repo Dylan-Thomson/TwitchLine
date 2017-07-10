@@ -160,7 +160,13 @@ function initSearchListeners() {
 function channelHTML(channel, stream, name) {
 	var result = "<div class='channel'><img src='";
 	if(channel) {
-		result += channel.logo + "'>" + channel.display_name;
+		if(channel.logo) {
+			result += channel.logo + "'>" + channel.display_name;
+		}
+		else {
+			result += "./assets/images/twitchlogo.png'>" + channel.display_name;
+		}
+		
 		if(stream) {
 			result += " currently streaming: " + stream.game + "</div>";
 		}
