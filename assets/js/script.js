@@ -1,7 +1,7 @@
 // Document Ready
 $(function() {
 	initPopular();
-	initFeatured();
+	initFeatured(5);
 	initListeners();
 });
 
@@ -42,11 +42,11 @@ function initPopular() {
 	Logic for featured streams
 *******************************************************************************************************************************/
 // Get a list of featured streams and update div with id #featured
-function initFeatured() {
+function initFeatured(num) {
 	var url = "https://api.twitch.tv/kraken/streams/featured/?client_id=yikjpcdax5o1rsaaw3g838aetcbsby";
 	$.getJSON(url, function(data) {
-		for(var i=0; i<data.featured.length; i++) {
-			$("#featured").append(channelHTML(data.featured[i].stream.channel, data.featured[i].stream));
+		for(var i=0; i<num; i++) {
+			$("#featuredOutput").append(channelHTML(data.featured[i].stream.channel, data.featured[i].stream));
 		}
 	});
 }
@@ -59,6 +59,10 @@ function initFeatured() {
 function initListeners() {
 	initSelectListeners();
 	initSearchListeners();
+	$("#selectAmount").on("change", function(data) {
+		$("#featuredOutput").html("");
+		initFeatured($("select option:selected").val());
+	});
 }
 
 // Section select functionality
@@ -176,7 +180,7 @@ function channelHTML(channel, stream, name) {
 		else {
 			result += "./assets/images/twitchlogo.png'>" + channel.display_name;
 		}
-		
+
 		if(stream) {
 			result += " currently streaming: " + stream.game + "</div>";
 		}
