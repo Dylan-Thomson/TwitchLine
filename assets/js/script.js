@@ -51,11 +51,17 @@ function initFeatured() {
 	});
 }
 
+
+/*******************************************************************************************************************************
+	Logic for event listeners
+*******************************************************************************************************************************/
+// Initialize event listeners 
 function initListeners() {
 	initSelectListeners();
 	initSearchListeners();
 }
 
+// Section select functionality
 function initSelectListeners() {
 	$("#selectFeatured").on("click", function() {
 		if($("#featured").hasClass("hidden")) {
@@ -93,6 +99,7 @@ function initSelectListeners() {
 	});
 }
 
+// Channel search functionality 
 function initSearchListeners() {
 	$("#searchChannels").submit(function(event) {
 			event.preventDefault();
