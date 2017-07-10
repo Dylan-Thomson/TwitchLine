@@ -97,29 +97,54 @@ function initListeners() {
 			// Clear old search
 			$("#searchResults").html("");
 
+			// Get search term and clean text input
 			var searchTerm = $("#searchInput").val();
 			$("#searchInput").val("");
+
 			var url = "https://api.twitch.tv/kraken/search/channels?query=" + searchTerm + "&type=suggest&client_id=yikjpcdax5o1rsaaw3g838aetcbsby&&callback=?";
-			$.getJSON(url, function(data) {
-				console.log(data);
-				var html = "<div class='channel'><img src='" + data.channels[0].logo + "'>" + data.channels[0].display_name + "</div>"
-				$("#searchResults").append(html);
-				$("#searchWindow").removeClass("hidden");
+			
+			// Search for channels
+			$.getJSON(url, function(channelData) {
+				if(channelData.channels[0]) {
+					// See if first result is streaming
+					var url = "https://api.twitch.tv/kraken/streams/" + channelData.channels[0].display_name + "?client_id=yikjpcdax5o1rsaaw3g838aetcbsby";
+					$.getJSON(url, function(streamData) {
+						var result;
+						if(streamData.stream) {
+							result = channelHTML(streamData.stream.channel, streamData.stream);
+						}
+						else {
+							result = channelHTML(channelData.channels[0]);
+						}
 
+						$("#searchResults").append(result);
+						$("#searchWindow").removeClass("hidden");
 
+						// Add result to list
+						$("#addResult").on("click", function() {
+							$("#popularOutput").prepend(result);
+							$("#searchResults").html("");
+							$("#searchWindow").addClass("hidden");
+						});						
+					});
+				}
+				// No channels found
+				else {
+					$("#searchResults").append("No channels found matching that search. Please try again");
+					$("#searchWindow").removeClass("hidden");
+				}
 
-				$("#addResult").on("click", function() {
-					// see if streaming
-
-
-					$("#popularOutput").prepend(html);
-					$("#searchResults").html("");
-					$("#searchWindow").addClass("hidden");
-				});
+				// Cancel
 				$("#cancelResult").on("click", function() {
 					$("#searchResults").html("");
 					$("#searchWindow").addClass("hidden");
 				});
+
+			})
+			.fail(function(jqXHR) { 
+				if(jqXHR.status == 404) {
+					alert("404 channel not found");
+				}
 			});
 	});
 }
