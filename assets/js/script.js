@@ -134,10 +134,12 @@ function initSearchListeners() {
 						$("#searchWindow").removeClass("hidden");
 
 						// Add result to list
+						$("#addResult").removeClass("hidden");
 						$("#addResult").on("click", function() {
 							$("#popularOutput").prepend(result);
 							$("#searchResults").html("");
 							$("#searchWindow").addClass("hidden");
+							$("#addResult").addClass("hidden");
 						});						
 					});
 				}
