@@ -153,6 +153,7 @@ function initSearchListeners() {
 				$("#cancelResult").on("click", function() {
 					$("#searchResults").html("");
 					$("#searchWindow").addClass("hidden");
+					$("#addResult").addClass("hidden");
 				});
 
 			})
