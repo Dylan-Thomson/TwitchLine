@@ -1,13 +1,32 @@
+body {
+	background: #222;
+	color: #FAFAFA;
+}
+
+h1 {
+	/*background: #6441A4;*/
+}
+
 img {
 	width: 100px;
 	margin-right: 10px;
 	background: white;
 }
 
-a img:hover {
-	opacity: 0.5;
-  filter: alpha(opacity=50); /* For IE8 and earlier */
+a {
+	background: #444;
+	padding: 5px;
+	color: #A990D7;
+	border-radius: 5px;
 }
+
+a:hover, a:active {
+	color: #8161BB;
+}
+
+ a:visited {
+ 	color: #A990D7;
+ }
 
 header, h3 {
 	display: inline-block;
@@ -26,6 +45,22 @@ dd {
   width: 60%;
 }
 
+/*input, select, textarea {
+	color: #444;
+	
+}*/
+
+#searchInput {
+	border: 1px solid #444;
+	background: #333;
+	color: #444;
+}
+
+#searchInput:focus {
+	border: 2px solid #6441A4;
+	color: #FFF;
+}
+
 #selectPopular, #selectFeatured {
 	margin: auto 0;
 	padding: 20px;
@@ -38,9 +73,9 @@ dd {
 }
 
 .channel {
-	background: #F5F5F5;
+	background: #333;
 	margin: 10px auto;
-	border: 1px dotted #ABABAB;
+	border: 1px dotted #6441A4;
 	padding: 15px;
 }
 
