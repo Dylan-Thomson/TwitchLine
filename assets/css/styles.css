@@ -62,8 +62,9 @@ dd {
 	top: 25%;
 	left: 25%;
 	width: 50%;
-	height: 50%;
-	background: purple;
+	/*height: 50%;*/
+	background: #6441A4;
+	z-index: 1;
 }
 
 .red {
