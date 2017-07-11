@@ -166,6 +166,7 @@ function initSearchListeners() {
 	});
 }
 
+// TODO load all featured streams but hide them?
 function initFeaturedAmountListeners() {
 	$("#selectAmount").on("change", function(data) {
 	$("#featuredOutput").html("");
@@ -176,29 +177,10 @@ function initFeaturedAmountListeners() {
 // Accepts 1 to 3 parameters for channel data, stream data, and channel name
 // Builds and returns an HTML string that can be appended to the page
 function channelHTML(channel, stream, name) {
-	// var result = "<div class='channel'><img src='";
-	// if(channel) {
-	// 	if(channel.logo) {
-	// 		result += channel.logo + "'>" + channel.display_name;
-	// 	}
-	// 	else {
-	// 		result += "./assets/images/twitchlogo.png'>" + channel.display_name;
-	// 	}
-
-	// 	if(stream) {
-	// 		result += " currently streaming: " + stream.game + "</div>";
-	// 	}
-	// 	else {
-	// 		result += " currently offline</div>";
-	// 	}
-	// }
-	// else { //404
-	// 	result += "./assets/images/twitchlogo.png'>" + name + " returned 404 error: Unable to find channel</div>";
-	// }	
 	var result = "<div class='channel'>";
 	if(channel) {
-		result += "<div class='row'>";
-		result += "<div class='col-xs-12 flex'>";
+		result += "<div class='row flex'>";
+		result += "<div class='col-sm-8 flex'>";
 
 		if(channel.logo) {
 			result += "<div class='channelIMG'>";
@@ -214,36 +196,45 @@ function channelHTML(channel, stream, name) {
 		if(stream) {
 			result += "<header>";
 			result += "<i class='fa fa-circle red' aria-hidden='true'></i> " + "<h3>" + channel.display_name + " is streaming</h3>";
-			// result += "</div><div class='row'>";
 			result += "<p>";
-			result += channel.status;
+			result += "Status: "+ channel.status;
+			result += "</p>";
+			result += "<p>";
+			result += "Currently streaming: " + stream.game;
+			result += " with " + stream.viewers.toLocaleString() + " viewers";
 			result += "</p>";
 			result += "<p>";
 			result += "<a href='" + channel.url + "'>" + channel.url + "</a>";
 			result += "</p>";
 			result += "</header>";
 			result += "</div>"; //end row
-			result += "</div>"; //end col
+
 		}
 		else {
 			result += "<header>";
 			result += "<i class='fa fa-arrow-down' aria-hidden='true'></i> " + "<h3>" + channel.display_name + " is offline</h3>";
 			result += "<p>";
-			result += channel.status;
+			result += "Status: " + channel.status;
+			result += "</p>";
+			result += "<p>";
+			result += "Last streamed: " + channel.game;
 			result += "</p>";
 			result += "<p>";
 			result += "<a href='" + channel.url + "'>" + channel.url + "</a>";
 			result += "</p>";
 			result += "</header>";
 			result += "</div>"; //end row
-			result += "</div>"; //end col
 		}
+
+		result += "<div class='col-sm-4'>";
+		result += "<dl><dt>Created:</dt>" + "<dd>" + channel.created_at + "</dd>" + "<dt>Followers:</dt>" + "<dd>" + channel.followers.toLocaleString() + "</dd>" + "<dt>Views:</dt>" + "<dd>" + channel.views.toLocaleString() + "</dd>" + "</dl>"
+		result += "</div>";
 	}
 	else { //404
 		result += "<img src='./assets/images/twitchlogo.png'>";
 		result += "<i class='fa fa-times' aria-hidden='true'></i> " + name;
 		result += " returned 404 error: Unable to find channel";
 	}
-	result += "</div>";
+	result += "</div>"; //end channel
 	return result;
 }
