@@ -176,24 +176,47 @@ function initFeaturedAmountListeners() {
 // Accepts 1 to 3 parameters for channel data, stream data, and channel name
 // Builds and returns an HTML string that can be appended to the page
 function channelHTML(channel, stream, name) {
-	var result = "<div class='channel'><img src='";
+	// var result = "<div class='channel'><img src='";
+	// if(channel) {
+	// 	if(channel.logo) {
+	// 		result += channel.logo + "'>" + channel.display_name;
+	// 	}
+	// 	else {
+	// 		result += "./assets/images/twitchlogo.png'>" + channel.display_name;
+	// 	}
+
+	// 	if(stream) {
+	// 		result += " currently streaming: " + stream.game + "</div>";
+	// 	}
+	// 	else {
+	// 		result += " currently offline</div>";
+	// 	}
+	// }
+	// else { //404
+	// 	result += "./assets/images/twitchlogo.png'>" + name + " returned 404 error: Unable to find channel</div>";
+	// }	
+	var result = "<div class='row channel'>";
 	if(channel) {
 		if(channel.logo) {
-			result += channel.logo + "'>" + channel.display_name;
+			result += "<img src='" + channel.logo + "'>";
 		}
 		else {
-			result += "./assets/images/twitchlogo.png'>" + channel.display_name;
+			result += "<img src='./assets/images/twitchlogo.png'>";
 		}
 
 		if(stream) {
-			result += " currently streaming: " + stream.game + "</div>";
+			result += "<i class='fa fa-circle red' aria-hidden='true'></i> " + channel.display_name;
+			result += " currently streaming: " + stream.game;
 		}
 		else {
-			result += " currently offline</div>";
+			result += "<i class='fa fa-arrow-down' aria-hidden='true'></i> " + channel.display_name;
+			result += " currently offline";
 		}
 	}
 	else { //404
-		result += "./assets/images/twitchlogo.png'>" + name + " returned 404 error: Unable to find channel</div>";
+		result += "<img src='./assets/images/twitchlogo.png'>";
+		result += name + " returned 404 error: Unable to find channel";
 	}
+	result += "</div>";
 	return result;
 }

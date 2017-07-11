@@ -2,11 +2,18 @@ img {
 	width: 100px;
 	margin-right: 10px;
 	background: white;
+	/*display: inline-block;*/
 }
 
-h2 {
-
+a img:hover {
+	opacity: 0.5;
+  filter: alpha(opacity=50); /* For IE8 and earlier */
 }
+
+h3 {
+	display: inline-block;
+}
+
 
 #selectPopular, #selectFeatured {
 	margin: auto 0;
@@ -16,13 +23,13 @@ h2 {
 
 #popular, #featured {
 	margin: 50px auto;
-	/*width: 60%;*/
+	width: 60%;
 }
 
 .channel {
 	background: #F5F5F5;
 	margin: 10px auto;
-	/*border: 1px dotted #ABABAB;*/
+	border: 1px dotted #ABABAB;
 }
 
 .selected {
@@ -37,4 +44,8 @@ h2 {
 	width: 50%;
 	height: 50%;
 	background: purple;
+}
+
+.red {
+	color: red;
 }
