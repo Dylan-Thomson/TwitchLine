@@ -1,6 +1,11 @@
 body {
 	background: #222;
 	color: #FAFAFA;
+	font-family: 'Droid Sans', sans;
+}
+
+h1, h2, h3 {
+	font-family: 'Droid Serif', serif; 
 }
 
 h1 {
@@ -40,6 +45,7 @@ dl {
 dt {
   float: left;
   width: 40%;
+  font-weight: normal;
 }
 dd {
   float: left;

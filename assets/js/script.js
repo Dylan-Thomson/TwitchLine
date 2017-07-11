@@ -199,10 +199,10 @@ function channelHTML(channel, stream, name) {
 			result += "<header>";
 			result += "<i class='fa fa-circle red' aria-hidden='true'></i> " + "<h3>" + channel.display_name + " is streaming</h3>";
 			result += "<p>";
-			result += "Status: "+ channel.status;
+			result += channel.status;
 			result += "</p>";
 			result += "<p>";
-			result += "Currently streaming: " + stream.game;
+			result += "<i class='fa fa-gamepad' aria-hidden='true'></i> " + stream.game;
 			result += " with " + stream.viewers.toLocaleString() + " viewers";
 			result += "</p>";
 			result += "<p>";
@@ -216,10 +216,10 @@ function channelHTML(channel, stream, name) {
 			result += "<header>";
 			result += "<i class='fa fa-arrow-down' aria-hidden='true'></i> " + "<h3>" + channel.display_name + " is offline</h3>";
 			result += "<p>";
-			result += "Status: " + channel.status;
+			result += channel.status;
 			result += "</p>";
 			result += "<p>";
-			result += "Last streamed: " + channel.game;
+			result += "<i class='fa fa-gamepad' aria-hidden='true'></i> " + channel.game;
 			result += "</p>";
 			result += "<p>";
 			result += "<a href='" + channel.url + "' target='_blank'>" + channel.url + "</a>";
