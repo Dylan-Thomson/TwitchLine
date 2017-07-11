@@ -176,6 +176,8 @@ function initFeaturedAmountListeners() {
 
 // Accepts 1 to 3 parameters for channel data, stream data, and channel name
 // Builds and returns an HTML string that can be appended to the page
+
+// https://www.twitch.tv/directory/game/League%20of%20Legends
 function channelHTML(channel, stream, name) {
 	var result = "<div class='channel'>";
 	if(channel) {
@@ -204,7 +206,7 @@ function channelHTML(channel, stream, name) {
 			result += " with " + stream.viewers.toLocaleString() + " viewers";
 			result += "</p>";
 			result += "<p>";
-			result += "<a href='" + channel.url + "'>" + channel.url + "</a>";
+			result += "<a href='" + channel.url + "' target='_blank'>" + channel.url + "</a>";
 			result += "</p>";
 			result += "</header>";
 			result += "</div>"; //end row
@@ -220,7 +222,7 @@ function channelHTML(channel, stream, name) {
 			result += "Last streamed: " + channel.game;
 			result += "</p>";
 			result += "<p>";
-			result += "<a href='" + channel.url + "'>" + channel.url + "</a>";
+			result += "<a href='" + channel.url + "' target='_blank'>" + channel.url + "</a>";
 			result += "</p>";
 			result += "</header>";
 			result += "</div>"; //end row
