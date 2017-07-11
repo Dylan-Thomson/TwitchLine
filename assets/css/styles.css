@@ -58,7 +58,7 @@ dd {
 }
 
 #searchWindow {
-	position: absolute;
+	position: fixed;
 	top: 25%;
 	left: 25%;
 	width: 50%;
