@@ -195,27 +195,54 @@ function channelHTML(channel, stream, name) {
 	// else { //404
 	// 	result += "./assets/images/twitchlogo.png'>" + name + " returned 404 error: Unable to find channel</div>";
 	// }	
-	var result = "<div class='row channel'>";
+	var result = "<div class='channel'>";
 	if(channel) {
+		result += "<div class='row'>";
+		result += "<div class='col-xs-12 flex'>";
+
 		if(channel.logo) {
+			result += "<div class='channelIMG'>";
 			result += "<img src='" + channel.logo + "'>";
+			result += "</div>";
 		}
 		else {
+			result += "<div class='channelIMG'>";
 			result += "<img src='./assets/images/twitchlogo.png'>";
+			result += "</div>";
 		}
 
 		if(stream) {
-			result += "<i class='fa fa-circle red' aria-hidden='true'></i> " + channel.display_name;
-			result += " currently streaming: " + stream.game;
+			result += "<header>";
+			result += "<i class='fa fa-circle red' aria-hidden='true'></i> " + "<h3>" + channel.display_name + " is streaming</h3>";
+			// result += "</div><div class='row'>";
+			result += "<p>";
+			result += channel.status;
+			result += "</p>";
+			result += "<p>";
+			result += "<a href='" + channel.url + "'>" + channel.url + "</a>";
+			result += "</p>";
+			result += "</header>";
+			result += "</div>"; //end row
+			result += "</div>"; //end col
 		}
 		else {
-			result += "<i class='fa fa-arrow-down' aria-hidden='true'></i> " + channel.display_name;
-			result += " currently offline";
+			result += "<header>";
+			result += "<i class='fa fa-arrow-down' aria-hidden='true'></i> " + "<h3>" + channel.display_name + " is offline</h3>";
+			result += "<p>";
+			result += channel.status;
+			result += "</p>";
+			result += "<p>";
+			result += "<a href='" + channel.url + "'>" + channel.url + "</a>";
+			result += "</p>";
+			result += "</header>";
+			result += "</div>"; //end row
+			result += "</div>"; //end col
 		}
 	}
 	else { //404
 		result += "<img src='./assets/images/twitchlogo.png'>";
-		result += name + " returned 404 error: Unable to find channel";
+		result += "<i class='fa fa-times' aria-hidden='true'></i> " + name;
+		result += " returned 404 error: Unable to find channel";
 	}
 	result += "</div>";
 	return result;

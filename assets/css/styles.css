@@ -10,9 +10,10 @@ a img:hover {
   filter: alpha(opacity=50); /* For IE8 and earlier */
 }
 
-h3 {
+header, h3 {
 	display: inline-block;
 }
+
 
 
 #selectPopular, #selectFeatured {
@@ -30,6 +31,15 @@ h3 {
 	background: #F5F5F5;
 	margin: 10px auto;
 	border: 1px dotted #ABABAB;
+	padding: 15px;
+}
+
+.channelIMG {
+	display: inline-block;
+}
+
+.row {
+	margin: 15px auto;
 }
 
 .selected {
@@ -48,4 +58,9 @@ h3 {
 
 .red {
 	color: red;
+}
+
+.flex {
+	display: flex;
+  align-items: center;
 }
