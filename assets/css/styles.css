@@ -45,6 +45,10 @@ dd {
   width: 60%;
 }
 
+form {
+	margin-bottom: 15px;
+}
+
 /*input, select, textarea {
 	color: #444;
 	
