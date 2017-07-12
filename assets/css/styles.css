@@ -168,6 +168,6 @@ form {
 
 @media (max-width: 800px) {
 	#popular, #featured, .channel{
-		width: 100%;
+		width: 100vw;
 	}
 }
