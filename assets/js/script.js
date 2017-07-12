@@ -229,7 +229,7 @@ function channelHTML(channel, stream, name) {
 		}
 
 		result += "<div class='col-sm-4'>";
-		result += "<dl><dt>Created:</dt>" + "<dd>" + channel.created_at + "</dd>" + "<dt>Followers:</dt>" + "<dd>" + channel.followers.toLocaleString() + "</dd>" + "<dt>Views:</dt>" + "<dd>" + channel.views.toLocaleString() + "</dd>" + "</dl>"
+		result += "<dl><dt>Created:</dt>" + "<dd>" + channel.created_at.substring(0, 10) + "</dd>" + "<dt>Followers:</dt>" + "<dd>" + channel.followers.toLocaleString() + "</dd>" + "<dt>Views:</dt>" + "<dd>" + channel.views.toLocaleString() + "</dd>" + "</dl>"
 		result += "</div>";
 	}
 	else { //404
