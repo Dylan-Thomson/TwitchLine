@@ -166,8 +166,8 @@ form {
 	background: #444;
 }*/
 
-/*@media handheld {
+@media (max-width: 766px) {
 	#popular, #featured, .channel{
 		width: 100vw;
 	}
-}*/
+}
