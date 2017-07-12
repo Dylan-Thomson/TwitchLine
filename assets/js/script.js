@@ -182,7 +182,7 @@ function channelHTML(channel, stream, name) {
 	var result = "<div class='channel'>";
 	if(channel) {
 		result += "<div class='row flex'>";
-		result += "<div class='col-md-8 flex'>";
+		result += "<div class='col-sm-8 flex'>";
 
 		if(channel.logo) {
 			result += "<div class='channelIMG'>";
@@ -228,7 +228,7 @@ function channelHTML(channel, stream, name) {
 			result += "</div>"; //end row
 		}
 
-		result += "<div class='col-md-4'>";
+		result += "<div class='col-sm-4'>";
 		result += "<dl><dt>Created:</dt>" + "<dd>" + channel.created_at + "</dd>" + "<dt>Followers:</dt>" + "<dd>" + channel.followers.toLocaleString() + "</dd>" + "<dt>Views:</dt>" + "<dd>" + channel.views.toLocaleString() + "</dd>" + "</dl>"
 		result += "</div>";
 	}
