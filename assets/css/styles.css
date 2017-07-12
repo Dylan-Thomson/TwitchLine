@@ -167,7 +167,7 @@ form {
 }*/
 
 @media (max-width: 800px) {
-	#popular, #featured {
+	#popular, #featured, .channel{
 		width: 100%;
 	}
 }
