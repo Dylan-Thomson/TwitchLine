@@ -197,7 +197,7 @@ function channelHTML(channel, stream, name) {
 
 		if(stream) {
 			result += "<header>";
-			result += "<i class='fa fa-circle red' aria-hidden='true'></i> " + "<h3>" + channel.display_name + " is streaming</h3>";
+			result += "<h3><i class='fa fa-circle red' aria-hidden='true'></i> " + channel.display_name + " is streaming</h3>";
 			result += "<p>";
 			result += channel.status;
 			result += "</p>";
@@ -214,7 +214,7 @@ function channelHTML(channel, stream, name) {
 		}
 		else {
 			result += "<header>";
-			result += "<i class='fa fa-arrow-down' aria-hidden='true'></i> " + "<h3>" + channel.display_name + " is offline</h3>";
+			result += "<h3><i class='fa fa-arrow-down' aria-hidden='true'></i> " + channel.display_name + " is offline</h3>";
 			result += "<p>";
 			result += channel.status;
 			result += "</p>";

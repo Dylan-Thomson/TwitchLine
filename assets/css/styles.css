@@ -109,7 +109,7 @@ form {
 
 #popular, #featured {
 	margin: 50px auto;
-	/*width: 80%;*/
+	width: 60%;
 }
 
 
@@ -126,7 +126,6 @@ form {
 }
 
 #searchButton {
-	/*border-radius: 25px;*/
 	background: #6441A4;
 	color: #FFF;
 	border: 1px solid #391777;
@@ -160,14 +159,70 @@ form {
 	border: 1px solid #6441A4;
 }
 
-/*#selectAmount option:hover {
-	border: 0;
-	outline: 0;
-	background: #444;
-}*/
-/*
-@media (max-width: 544px) {
-	#popular, #featured, .channel{
-		width: 100vw;
+@media (max-width: 767px) {
+	h1 {
+		font-size: 2em;
 	}
-}*/
+	h2 {
+		margin-bottom: 1em;
+	}
+	h3 {
+		font-size: 1em;
+	}
+
+	dl {
+		padding: 1em;
+	}
+
+	dt {
+		text-align: left;
+	}
+
+	dd {
+		text-align: right;
+	}
+
+	.container-fluid {
+		padding: 0;
+	}
+	.channel {
+		text-align: center;
+		border-radius: 0;
+		border: none;
+		border-bottom: 1px solid #444;
+		padding: .25em;
+	}
+
+	.channel:nth-child(even) {
+		background: #393939;
+	}
+
+	.channelIMG, img {
+		display: block;
+		margin: 0 auto;
+	}
+	.flex {
+		display: block;
+	}
+
+	.col-xs-12 {
+		padding: 0;
+	}
+
+	.col-sm-4 {
+		margin-top: 2em;
+	}
+
+	#searchButton {
+		width: 100%;
+	}
+	#popular, #featured, .channel{
+		/*background: purple;*/
+		width: 100%;
+		margin:0;
+	}
+
+	#selectPopular, #selectFeatured {
+		font-size: .5em;
+	}
+}
