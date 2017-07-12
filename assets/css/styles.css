@@ -166,7 +166,7 @@ form {
 	background: #444;
 }*/
 
-@media handheld {
+@media (max-width: 800px) {
 	#popular, #featured {
 		width: 100%;
 	}
