@@ -109,7 +109,7 @@ form {
 
 #popular, #featured {
 	margin: 50px auto;
-	width: 60%;
+	/*width: 80%;*/
 }
 
 
@@ -165,8 +165,8 @@ form {
 	outline: 0;
 	background: #444;
 }*/
-
-/*@media handheld {
+/*
+@media (max-width: 544px) {
 	#popular, #featured, .channel{
 		width: 100vw;
 	}
