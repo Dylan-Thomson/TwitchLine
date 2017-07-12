@@ -66,8 +66,9 @@ form {
 .channel {
 	background: #333;
 	margin: 10px auto;
-	border: 1px dotted #6441A4;
+	border: 1px solid #6441A4;
 	padding: 15px;
+	border-radius: 15px;
 }
 
 .channelIMG {
