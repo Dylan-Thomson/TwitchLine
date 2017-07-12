@@ -1,15 +1,15 @@
 body {
 	background: #222;
 	color: #FAFAFA;
-	font-family: 'Droid Sans', sans;
+	font-family: 'Ubuntu', sans-serif;
 }
 
 h1, h2, h3 {
-	font-family: 'Droid Serif', serif; 
+
+	font-family: 'Ubuntu', sans-serif;
 }
 
 h1 {
-	/*background: #6441A4;*/
 	font-size: 5em;
 }
 
@@ -41,6 +41,9 @@ header, h3 {
 dl {
   width: 100%;
   overflow: hidden;
+  background: #222;
+  padding: 5px;
+  border-radius: 15px;
 }
 dt {
   float: left;
