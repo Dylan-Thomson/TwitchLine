@@ -63,11 +63,13 @@ form {
 
 .channel {
 	background: #333;
-	margin: 10px auto;
-	border: 1px solid #6441A4;
-	padding: 15px;
-	border-radius: 15px;
+	padding: 1em;
+	border-bottom: 1px solid #444;
 }
+
+.channel:nth-child(even) {
+		background: #393939;
+	}
 
 .channelIMG {
 	display: inline-block;
@@ -111,6 +113,10 @@ form {
 	width: 60%;
 }
 
+#popularOutput {
+	border: 1px solid #444;
+	border-bottom: none;
+}
 
 
 #searchInput {
@@ -142,7 +148,6 @@ form {
 	top: 25%;
 	left: 25%;
 	width: 50%;
-	/*height: 50%;*/
 	background: #6441A4;
 	z-index: 1;
 }
@@ -174,14 +179,7 @@ form {
 	}
 	.channel {
 		text-align: center;
-		border-radius: 0;
-		border: none;
-		border-bottom: 1px solid #444;
 		padding: .25em;
-	}
-
-	.channel:nth-child(even) {
-		background: #393939;
 	}
 
 	.channelIMG, img {
@@ -204,12 +202,36 @@ form {
 		width: 100%;
 	}
 	#popular, #featured, .channel{
-		/*background: purple;*/
 		width: 100%;
 		margin:0;
 	}
 
 	#selectPopular, #selectFeatured {
 		font-size: .5em;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1366px) {
+	h2 {
+		margin-bottom: 1em;
+	}
+	h3 {
+		font-size: 1.5em;
+	}
+	.channel {
+		padding: .25em;
+	}
+
+	.col-xs-12 {
+		padding: 0;
+	}
+
+	.col-sm-4 {
+		margin-top: 2em;
+	}
+
+	#popular, #featured, .channel{
+		width: 100%;
+		margin:0;
 	}
 }
