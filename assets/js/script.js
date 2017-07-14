@@ -121,7 +121,6 @@ function initSearchListeners() {
 			$("#searchInput").val("");
 
 			var url = "https://api.twitch.tv/kraken/search/channels?query=" + searchTerm + "&type=suggest&client_id=yikjpcdax5o1rsaaw3g838aetcbsby&&callback=?";
-			
 			// Search for channels
 			$.getJSON(url, function(channelData) {
 				if(channelData.channels[0]) {
@@ -174,7 +173,7 @@ function initSearchListeners() {
 // TODO load all featured streams but hide them?
 function initFeaturedAmountListeners() {
 	$("#selectAmount").on("change", function(data) {
-	$("#featuredOutput").html("");
+		$("#featuredOutput").html("");
 		initFeatured($("select option:selected").val());
 	});
 }
@@ -183,8 +182,8 @@ function initFeaturedAmountListeners() {
 // Builds and returns an HTML string that can be appended to the page
 function channelHTML(channel, stream, name) {
 	var result = "<div class='channel'>";
+	result += "<div class='row flex'>";
 	if(channel) {
-		result += "<div class='row flex'>";
 		result += "<div class='col-sm-8 flex'>";
 
 		if(channel.logo) {
@@ -202,7 +201,7 @@ function channelHTML(channel, stream, name) {
 			result += " with " + stream.viewers.toLocaleString() + " viewers</p>";
 			result += "<p><a href='" + channel.url + "' target='_blank'>" + channel.url + "</a></p>";
 			result += "</header>";
-			result += "</div>"; //end row
+			result += "</div>"; //end col
 
 		}
 		else {
@@ -212,17 +211,19 @@ function channelHTML(channel, stream, name) {
 			result += "<p><i class='fa fa-gamepad' aria-hidden='true'></i> " + channel.game + "</p>";
 			result += "<p><a href='" + channel.url + "' target='_blank'>" + channel.url + "</a></p>";
 			result += "</header>";
-			result += "</div>"; //end row
+			result += "</div>"; //end col
 		}
 
 		result += "<div class='col-sm-4'>";
 		result += "<dl><dt>Created:</dt>" + "<dd>" + channel.created_at.substring(0, 10) + "</dd>" + "<dt>Followers:</dt>" + "<dd>" + channel.followers.toLocaleString() + "</dd>" + "<dt>Views:</dt>" + "<dd>" + channel.views.toLocaleString() + "</dd>" + "</dl>"
-		result += "</div>";
+		result += "</div>"; // end row
 	}
 	else { //404
-		result += "<img src='./assets/images/twitchlogo.png'>";
-		result += "<i class='fa fa-times' aria-hidden='true'></i> " + name;
-		result += " returned 404 error: Unable to find channel";
+		result += "<div class='col-xs-12 text-center'>"
+		// result += "<div class='channelIMG'><img src='./assets/images/twitchlogo.png'></div>";
+		result += "<h3>" + name + "</h3>";
+		result += "<p>Returned 404 error: Channel does not exist.</p>";
+		result += "</div></div>"
 	}
 	result += "</div>"; //end channel
 	return result;
