@@ -111,6 +111,11 @@ function initSearchListeners() {
 			// Clear old search
 			$("#searchResults").html("");
 
+			// Hide window if user does a new search while window is visibile
+			if(!$("#searchWindow").hasClass("hidden")) {
+				$("#searchWindow").addClass("hidden");
+			}
+
 			// Get search term and clean text input
 			var searchTerm = $("#searchInput").val();
 			$("#searchInput").val("");
