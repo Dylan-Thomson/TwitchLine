@@ -208,7 +208,9 @@ function channelHTML(channel, stream, name) {
 			result += "<header>";
 			result += "<h3><i class='fa fa-arrow-down' aria-hidden='true'></i> " + channel.display_name + " is offline</h3>";
 			result += "<p>" + channel.status + "</p>";
-			result += "<p><i class='fa fa-gamepad' aria-hidden='true'></i> " + channel.game + "</p>";
+			if(channel.game) {
+				result += "<p><i class='fa fa-gamepad' aria-hidden='true'></i> " + channel.game + "</p>";
+			}
 			result += "<p><a href='" + channel.url + "' target='_blank'>" + channel.url + "</a></p>";
 			result += "</header>";
 			result += "</div>"; //end col
