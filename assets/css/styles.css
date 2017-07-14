@@ -19,9 +19,6 @@ img {
 	border-radius: 15px;
 }
 
-.channel:nth-child(even) img {
-	background: #393939;
-}
 
 a {
 	background: #444;
@@ -74,6 +71,10 @@ form {
 .channel:nth-child(even) {
 		background: #393939;
 	}
+	
+.channel:nth-child(even) img {
+	background: #393939;
+}
 
 .channelIMG {
 	display: inline-block;
