@@ -19,6 +19,10 @@ img {
 	border-radius: 15px;
 }
 
+.channel:nth-child(even) img {
+	background: #393939;
+}
+
 a {
 	background: #444;
 	padding: 5px;
