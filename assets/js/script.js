@@ -10,8 +10,8 @@ $(function() {
 	Logic for popular channels
 *******************************************************************************************************************************/
 // Setup popular channels array - comster404 and brunofin are nonexistent accounts for testing
-// var popularChannels = ["dansgaming", "strippin", "sheriffeli", "dexbonus", "lirik", "moonmoon_ow", "comster404", "bobross", "timthetatman", "riotgames", "crendor", "shaboozey", "freecodecamp", "esl_csgo", "nl_kripp", "trump", "totalbiscuit"];
-var popularChannels = ["dansgaming", "strippin", "sheriffeli", "comster404", "freecodecamp"];
+var popularChannels = ["dansgaming", "strippin", "sheriffeli", "dexbonus", "lirik", "moonmoon_ow", "comster404", "bobross", "timthetatman", "riotgames", "crendor", "shaboozey", "freecodecamp", "esl_csgo", "nl_kripp", "trump", "totalbiscuit"];
+// var popularChannels = ["dansgaming", "strippin", "sheriffeli", "comster404", "freecodecamp"];
 // Get channel and stream data for popular channels and update div with id #popular
 function initPopular() {	
 	popularChannels.forEach(function(channel) {
@@ -217,12 +217,14 @@ function channelHTML(channel, stream, name) {
 		}
 
 		result += "<div class='col-sm-4'>";
-		result += "<dl><dt>Created:</dt>" + "<dd>" + channel.created_at.substring(0, 10) + "</dd>" + "<dt>Followers:</dt>" + "<dd>" + channel.followers.toLocaleString() + "</dd>" + "<dt>Views:</dt>" + "<dd>" + channel.views.toLocaleString() + "</dd>" + "</dl>"
+		result += "<dl>" + "<dt>Followers:</dt>" + "<dd>" + channel.followers.toLocaleString() + "</dd>" + 
+							"<dt>Views:</dt>" + "<dd>" + channel.views.toLocaleString() + "</dd>" + 
+							"<dt>Created:</dt>" + "<dd>" + channel.created_at.substring(0, 10) + "</dd>" + 
+							"<dt>Updated:</dt>" + "<dd>" + channel.updated_at.substring(0, 10) + "</dd>" + "</dl>"
 		result += "</div>"; // end row
 	}
 	else { //404
 		result += "<div class='col-xs-12 text-center'>"
-		// result += "<div class='channelIMG'><img src='./assets/images/twitchlogo.png'></div>";
 		result += "<h3>" + name + "</h3>";
 		result += "<p>Returned 404 error: Channel does not exist.</p>";
 		result += "</div></div>"
