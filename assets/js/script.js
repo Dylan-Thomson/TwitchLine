@@ -221,7 +221,7 @@ function channelHTML(channel, stream, name) {
 							"<dt>Views:</dt>" + "<dd>" + channel.views.toLocaleString() + "</dd>" + 
 							"<dt>Created:</dt>" + "<dd>" + channel.created_at.substring(0, 10) + "</dd>" + 
 							"<dt>Updated:</dt>" + "<dd>" + channel.updated_at.substring(0, 10) + "</dd>" + "</dl>"
-		result += "</div>"; // end row
+		result += "</div>"; // end col
 	}
 	else { //404
 		result += "<div class='col-xs-12 text-center'>"
@@ -229,6 +229,7 @@ function channelHTML(channel, stream, name) {
 		result += "<p>Returned 404 error: Channel does not exist.</p>";
 		result += "</div></div>"
 	}
+	result += "</div>"; // end row
 	result += "</div>"; //end channel
 	return result;
 }
