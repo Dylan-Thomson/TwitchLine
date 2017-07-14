@@ -181,8 +181,6 @@ function initFeaturedAmountListeners() {
 
 // Accepts 1 to 3 parameters for channel data, stream data, and channel name
 // Builds and returns an HTML string that can be appended to the page
-
-// https://www.twitch.tv/directory/game/League%20of%20Legends
 function channelHTML(channel, stream, name) {
 	var result = "<div class='channel'>";
 	if(channel) {
@@ -190,29 +188,19 @@ function channelHTML(channel, stream, name) {
 		result += "<div class='col-sm-8 flex'>";
 
 		if(channel.logo) {
-			result += "<div class='channelIMG'>";
-			result += "<img src='" + channel.logo + "'>";
-			result += "</div>";
+			result += "<div class='channelIMG'><img src='" + channel.logo + "'></div>";
 		}
 		else {
-			result += "<div class='channelIMG'>";
-			result += "<img src='./assets/images/twitchlogo.png'>";
-			result += "</div>";
+			result += "<div class='channelIMG'><img src='./assets/images/twitchlogo.png'></div>";
 		}
 
 		if(stream) {
 			result += "<header>";
 			result += "<i class='fa fa-circle red' aria-hidden='true'></i> <h3>" + channel.display_name + " is streaming</h3>";
-			result += "<p>";
-			result += channel.status;
-			result += "</p>";
-			result += "<p>";
-			result += "<i class='fa fa-gamepad' aria-hidden='true'></i> " + stream.game;
-			result += " with " + stream.viewers.toLocaleString() + " viewers";
-			result += "</p>";
-			result += "<p>";
-			result += "<a href='" + channel.url + "' target='_blank'>" + channel.url + "</a>";
-			result += "</p>";
+			result += "<p>" + channel.status + "</p>";
+			result += "<p><i class='fa fa-gamepad' aria-hidden='true'></i> " + stream.game;
+			result += " with " + stream.viewers.toLocaleString() + " viewers</p>";
+			result += "<p><a href='" + channel.url + "' target='_blank'>" + channel.url + "</a></p>";
 			result += "</header>";
 			result += "</div>"; //end row
 
@@ -220,15 +208,9 @@ function channelHTML(channel, stream, name) {
 		else {
 			result += "<header>";
 			result += "<h3><i class='fa fa-arrow-down' aria-hidden='true'></i> " + channel.display_name + " is offline</h3>";
-			result += "<p>";
-			result += channel.status;
-			result += "</p>";
-			result += "<p>";
-			result += "<i class='fa fa-gamepad' aria-hidden='true'></i> " + channel.game;
-			result += "</p>";
-			result += "<p>";
-			result += "<a href='" + channel.url + "' target='_blank'>" + channel.url + "</a>";
-			result += "</p>";
+			result += "<p>" + channel.status + "</p>";
+			result += "<p><i class='fa fa-gamepad' aria-hidden='true'></i> " + channel.game + "</p>";
+			result += "<p><a href='" + channel.url + "' target='_blank'>" + channel.url + "</a></p>";
 			result += "</header>";
 			result += "</div>"; //end row
 		}
