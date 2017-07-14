@@ -71,7 +71,7 @@ form {
 .channel:nth-child(even) {
 		background: #393939;
 	}
-	
+
 .channel:nth-child(even) img {
 	background: #393939;
 }
@@ -153,15 +153,16 @@ form {
 	left: 25%;
 	width: 50%;
 	z-index: 1;*/
-	background: #444;
+	background: #333;
 	border-radius: 25px;
-	border: 2px solid #222;
+	border: 1px solid #444;
 
 	margin: 1em auto;
 }
 
 #searchWindow .channel {
 	border-radius: 25px 25px 0 0;
+	border-bottom: none;
 }
 
 #searchWindow h2 {
@@ -172,7 +173,7 @@ form {
 #addResult, #cancelResult {
 	background: #6441A4;
 	border: none;
-	border-radius: 25px;
+	/*border-radius: 25px;*/
 }
 
 #addResult {
