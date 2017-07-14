@@ -15,7 +15,8 @@ h1 {
 img {
 	width: 100px;
 	margin-right: 10px;
-	background: white;
+	background: #222;
+	border-radius: 15px;
 }
 
 a {
@@ -116,7 +117,6 @@ form {
 	border: 1px solid #444;
 	border-bottom: none;
 }
-
 
 #searchInput {
 	border: 1px solid #444;
