@@ -151,7 +151,7 @@ function initSearchListeners() {
 				}
 				// No channels found
 				else {
-					$("#searchResults").append("No channels found matching that search. Please try again");
+					$("#searchResults").append("<p class='text-center'>No channels found matching that search. Please try again</p>");
 					$("#searchWindow").removeClass("hidden");
 				}
 
