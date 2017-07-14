@@ -5,7 +5,6 @@ body {
 }
 
 h1, h2, h3 {
-
 	font-family: 'Ubuntu', sans-serif;
 }
 
@@ -113,7 +112,7 @@ form {
 	width: 60%;
 }
 
-#popularOutput {
+#popularOutput, #featuredOutput {
 	border: 1px solid #444;
 	border-bottom: none;
 }
@@ -144,12 +143,50 @@ form {
 }
 
 #searchWindow {
-	position: fixed;
+/*	position: fixed;
 	top: 25%;
 	left: 25%;
 	width: 50%;
+	z-index: 1;*/
+	background: #444;
+	border-radius: 25px;
+	border: 2px solid #222;
+
+	margin: 1em auto;
+}
+
+#searchWindow .channel {
+	border-radius: 25px 25px 0 0;
+}
+
+#searchWindow h2 {
+	margin-bottom: none;
+	padding: none;
+}
+
+#addResult, #cancelResult {
 	background: #6441A4;
-	z-index: 1;
+	border: none;
+	border-radius: 25px;
+}
+
+#addResult {
+	width: 25%;
+	margin-right: 1em;
+}
+
+#addResult:hover, #addResult:active, #addResult.active, #addResult:focus, 
+#addResult.focus, #addResult:active:hover, #addResult.active:hover, 
+#cancelResult:hover, #cancelResult:active, #cancelResult.active, #cancelResult:focus, 
+#cancelResult.focus, #cancelResult:active:hover, #cancelResult.active:hover {
+	background: #8161BB;
+	color: #FFF;
+  outline: none;
+}
+
+#cancelResult {
+	width: 25%;
+	margin-left: 1em;
 }
 
 #selectAmount {
@@ -209,6 +246,9 @@ form {
 	#selectPopular, #selectFeatured {
 		font-size: .5em;
 	}
+	#searchWindow {
+		width: 100%;
+	}
 }
 
 @media (min-width: 768px) and (max-width: 1366px) {
@@ -233,5 +273,8 @@ form {
 	#popular, #featured, .channel{
 		width: 100%;
 		margin:0;
+	}
+	#searchWindow {
+		width: 100%;
 	}
 }
