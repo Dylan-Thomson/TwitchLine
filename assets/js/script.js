@@ -42,19 +42,11 @@ function initPopular() {
 	Logic for featured streams
 *******************************************************************************************************************************/
 // Get a list of featured streams and update div with id #featured
-function initFeatured() {
+function initFeatured(num) {
 	var url = "https://api.twitch.tv/kraken/streams/featured/?client_id=yikjpcdax5o1rsaaw3g838aetcbsby";
 	$.getJSON(url, function(data) {
-		var counter = 0;
-		var selectDiv = 5;
-		for(var i=0; i<data.featured.length; i++) {
-			counter++;
-			$("#select" + selectDiv).append(channelHTML(data.featured[i].stream.channel, data.featured[i].stream));
-			if(counter == 5) {
-				selectDiv += counter;
-				counter = 0;
-			}
-			// $("#featuredOutput").append(channelHTML(data.featured[i].stream.channel, data.featured[i].stream));
+		for(var i=0; i<num; i++) {
+			$("#featuredOutput").append(channelHTML(data.featured[i].stream.channel, data.featured[i].stream));
 		}
 	});
 }
@@ -178,29 +170,12 @@ function initSearchListeners() {
 	});
 }
 
-// Hide/show divs depending on amount selected
+// TODO load all featured streams but hide them?
 function initFeaturedAmountListeners() {
 	$("#selectAmount").on("change", function(data) {
-		var amount = Number($("select option:selected").val());
-		hideFeaturedDivs(amount);
-		showFeaturedDivs(amount);
+		$("#featuredOutput").html("");
+		initFeatured($("select option:selected").val());
 	});
-}
-
-// Hide all divs higher than amount
-function hideFeaturedDivs(amount) {
-	while(amount < 25) {
-		amount += 5;
-		$("#select" + amount).addClass("hidden");
-	}
-}
-
-// Show all divs equal to or less than amount
-function showFeaturedDivs(amount) {
-	while(amount > 5) {
-		$("#select" + amount).removeClass("hidden");
-		amount -= 5;
-	}
 }
 
 // Accepts 1 to 3 parameters for channel data, stream data, and channel name
