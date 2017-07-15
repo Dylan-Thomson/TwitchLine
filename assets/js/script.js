@@ -110,6 +110,7 @@ function initSelectListeners() {
 function initSearchListeners() {
 	$("#searchChannels").submit(function(event) {
 			event.preventDefault();
+
 			// Remove old listeners
 			$("#addResult").off("click");
 			$("#cancelResult").off("click");
@@ -126,53 +127,68 @@ function initSearchListeners() {
 			var searchTerm = $("#searchInput").val();
 			$("#searchInput").val("");
 
-			var url = "https://api.twitch.tv/kraken/search/channels?query=" + searchTerm + "&type=suggest&client_id=yikjpcdax5o1rsaaw3g838aetcbsby&&callback=?";
 			// Search for channels
-			$.getJSON(url, function(channelData) {
-				if(channelData.channels[0]) {
-					// See if first result is streaming
-					var url = "https://api.twitch.tv/kraken/streams/" + channelData.channels[0].display_name + "?client_id=yikjpcdax5o1rsaaw3g838aetcbsby";
-					$.getJSON(url, function(streamData) {
-						var result;
-						if(streamData.stream) {
-							result = channelHTML(streamData.stream.channel, streamData.stream);
-						}
-						else {
-							result = channelHTML(channelData.channels[0]);
-						}
+			searchChannel(searchTerm);
+	});
+}
 
-						$("#searchResults").append(result);
-						$("#searchWindow").removeClass("hidden");
-
-						// Add result to list
-						$("#addResult").removeClass("hidden");
-						$("#addResult").on("click", function() {
-							$("#popularOutput").prepend(result);
-							$("#searchResults").html("");
-							$("#searchWindow").addClass("hidden");
-							$("#addResult").addClass("hidden");
-						});						
-					});
+// Takes a search term, updates search window with first result, adds listeners to buttons
+function searchChannel(searchTerm) {
+	var url = "https://api.twitch.tv/kraken/search/channels?query=" + searchTerm + "&type=suggest&client_id=yikjpcdax5o1rsaaw3g838aetcbsby&&callback=?";
+	$.getJSON(url, function(channelData) {
+		if(channelData.channels[0]) {
+			// See if first result is streaming
+			var url = "https://api.twitch.tv/kraken/streams/" + channelData.channels[0].display_name + "?client_id=yikjpcdax5o1rsaaw3g838aetcbsby";
+			$.getJSON(url, function(streamData) {
+				var result;
+				if(streamData.stream) {
+					result = channelHTML(streamData.stream.channel, streamData.stream);
 				}
-				// No channels found
 				else {
-					$("#searchResults").append("<p class='text-center'>No channels found matching that search. Please try again</p>");
-					$("#searchWindow").removeClass("hidden");
+					result = channelHTML(channelData.channels[0]);
 				}
 
-				// Cancel
-				$("#cancelResult").on("click", function() {
-					$("#searchResults").html("");
-					$("#searchWindow").addClass("hidden");
-					$("#addResult").addClass("hidden");
-				});
+				$("#searchResults").append(result);
 
-			})
-			.fail(function(jqXHR) { 
-				if(jqXHR.status == 404) {
-					alert("404 channel not found");
-				}
+				// Do this here so we don't show window before async function is finished
+				$("#searchWindow").removeClass("hidden");
+				$("#addResult").removeClass("hidden");
+
+				// Add result listener
+				addResultListener(result);
 			});
+		}
+		// No channels found
+		else {
+			$("#searchResults").append("<p class='text-center'>No channels found matching that search. Please try again</p>");
+			$("#searchWindow").removeClass("hidden");
+		}
+
+		// Cancel listener
+		cancelResultListener();
+
+	})
+	.fail(function(jqXHR) { 
+		if(jqXHR.status == 404) {
+			alert("404 channel not found");
+		}
+	});
+}
+
+function addResultListener(result) {
+	$("#addResult").on("click", function() {
+		$("#popularOutput").prepend(result);
+		$("#searchResults").html("");
+		$("#searchWindow").addClass("hidden");
+		$("#addResult").addClass("hidden");
+	});				
+}
+
+function cancelResultListener() {
+	$("#cancelResult").on("click", function() {
+		$("#searchResults").html("");
+		$("#searchWindow").addClass("hidden");
+		$("#addResult").addClass("hidden");
 	});
 }
 
