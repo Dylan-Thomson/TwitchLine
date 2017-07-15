@@ -148,11 +148,6 @@ form {
 }
 
 #searchWindow {
-/*	position: fixed;
-	top: 25%;
-	left: 25%;
-	width: 50%;
-	z-index: 1;*/
 	background: #333;
 	border-radius: 25px;
 	border: 1px solid #444;
