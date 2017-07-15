@@ -1,7 +1,7 @@
 // Document Ready
 $(function() {
 	initPopular();
-	initFeatured(5);
+	initFeatured();
 	initListeners();
 });
 
@@ -42,11 +42,22 @@ function initPopular() {
 	Logic for featured streams
 *******************************************************************************************************************************/
 // Get a list of featured streams and update div with id #featured
-function initFeatured(num) {
+function initFeatured() {
 	var url = "https://api.twitch.tv/kraken/streams/featured/?client_id=yikjpcdax5o1rsaaw3g838aetcbsby";
 	$.getJSON(url, function(data) {
-		for(var i=0; i<num; i++) {
-			$("#featuredOutput").append(channelHTML(data.featured[i].stream.channel, data.featured[i].stream));
+		var counter = 0;
+		var selectDiv = 5;
+		for(var i=0; i<data.featured.length; i++) {
+			counter++;
+			$("#select" + selectDiv).append(channelHTML(data.featured[i].stream.channel, data.featured[i].stream));
+			if(counter == 5) {
+				selectDiv += counter;
+				counter = 0;
+			}
+<<<<<<< HEAD
+=======
+			// $("#featuredOutput").append(channelHTML(data.featured[i].stream.channel, data.featured[i].stream));
+>>>>>>> origin/master
 		}
 	});
 }
@@ -170,12 +181,29 @@ function initSearchListeners() {
 	});
 }
 
-// TODO load all featured streams but hide them?
+// Hide/show divs depending on amount selected
 function initFeaturedAmountListeners() {
 	$("#selectAmount").on("change", function(data) {
-		$("#featuredOutput").html("");
-		initFeatured($("select option:selected").val());
+		var amount = Number($("select option:selected").val());
+		hideFeaturedDivs(amount);
+		showFeaturedDivs(amount);
 	});
+}
+
+// Hide all divs higher than amount
+function hideFeaturedDivs(amount) {
+	while(amount < 25) {
+		amount += 5;
+		$("#select" + amount).addClass("hidden");
+	}
+}
+
+// Show all divs equal to or less than amount
+function showFeaturedDivs(amount) {
+	while(amount > 5) {
+		$("#select" + amount).removeClass("hidden");
+		amount -= 5;
+	}
 }
 
 // Accepts 1 to 3 parameters for channel data, stream data, and channel name
