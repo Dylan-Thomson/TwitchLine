@@ -5,7 +5,6 @@ $(function() {
 	initListeners();
 });
 
-// https://api.twitch.tv/kraken/search/games?query=starcraft%202&type=suggest&client_id=yikjpcdax5o1rsaaw3g838aetcbsby&
 /*******************************************************************************************************************************
 	Logic for popular channels
 *******************************************************************************************************************************/
@@ -36,11 +35,10 @@ function initPopular() {
 	});
 }
 
-
 /*******************************************************************************************************************************
 	Logic for featured streams
 *******************************************************************************************************************************/
-// Get a list of featured streams and update div with id #featured
+// Get a list of featured streams and update featured streams
 function initFeatured() {
 	var url = "https://api.twitch.tv/kraken/streams/featured/?client_id=yikjpcdax5o1rsaaw3g838aetcbsby";
 	$.getJSON(url, function(data) {
@@ -56,7 +54,6 @@ function initFeatured() {
 		}
 	});
 }
-
 
 /*******************************************************************************************************************************
 	Logic for event listeners
@@ -224,14 +221,12 @@ function channelHTML(channel, stream, name) {
 	result += "<div class='row flex'>";
 	if(channel) {
 		result += "<div class='col-sm-8 flex'>";
-
 		if(channel.logo) {
 			result += "<div class='channelIMG'><img src='" + channel.logo + "'></div>";
 		}
 		else {
 			result += "<div class='channelIMG'><img src='./assets/images/twitchlogo.png'></div>";
 		}
-
 		if(stream) {
 			result += "<header>";
 			result += "<i class='fa fa-circle red' aria-hidden='true'></i> <h3>" + channel.display_name + " is streaming</h3>";
@@ -241,7 +236,6 @@ function channelHTML(channel, stream, name) {
 			result += "<p><a href='" + channel.url + "' target='_blank'>" + channel.url + "</a></p>";
 			result += "</header>";
 			result += "</div>"; //end col
-
 		}
 		else {
 			result += "<header>";
@@ -254,7 +248,6 @@ function channelHTML(channel, stream, name) {
 			result += "</header>";
 			result += "</div>"; //end col
 		}
-
 		result += "<div class='col-sm-4'>";
 		result += "<dl>" + "<dt>Followers:</dt>" + "<dd>" + channel.followers.toLocaleString() + "</dd>" + 
 							"<dt>Views:</dt>" + "<dd>" + channel.views.toLocaleString() + "</dd>" + 
