@@ -127,7 +127,7 @@ function initSearchListeners() {
 			var searchTerm = $("#searchInput").val();
 			$("#searchInput").val("");
 
-			// Search for channels
+			// Search for channel
 			searchChannel(searchTerm);
 	});
 }
@@ -147,14 +147,14 @@ function searchChannel(searchTerm) {
 				else {
 					result = channelHTML(channelData.channels[0]);
 				}
-
+				// Append result to search window
 				$("#searchResults").append(result);
 
-				// Do this here so we don't show window before async function is finished
+				// Do this here so we don't show search window before async function is finished
 				$("#searchWindow").removeClass("hidden");
 				$("#addResult").removeClass("hidden");
 
-				// Add result listener
+				// AddResult listener
 				addResultListener(result);
 			});
 		}
@@ -163,10 +163,8 @@ function searchChannel(searchTerm) {
 			$("#searchResults").append("<p class='text-center'>No channels found matching that search. Please try again</p>");
 			$("#searchWindow").removeClass("hidden");
 		}
-
 		// Cancel listener
 		cancelResultListener();
-
 	})
 	.fail(function(jqXHR) { 
 		if(jqXHR.status == 404) {
@@ -175,6 +173,7 @@ function searchChannel(searchTerm) {
 	});
 }
 
+// Prepend result HTML to popular output
 function addResultListener(result) {
 	$("#addResult").on("click", function() {
 		$("#popularOutput").prepend(result);
@@ -184,6 +183,7 @@ function addResultListener(result) {
 	});				
 }
 
+// Undo search, hide window and addResult button
 function cancelResultListener() {
 	$("#cancelResult").on("click", function() {
 		$("#searchResults").html("");
