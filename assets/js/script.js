@@ -11,7 +11,6 @@ $(function() {
 *******************************************************************************************************************************/
 // Setup popular channels array - comster404 and brunofin are nonexistent accounts for testing
 var popularChannels = ["dansgaming", "strippin", "sheriffeli", "dexbonus", "lirik", "moonmoon_ow", "comster404", "bobross", "timthetatman", "riotgames", "crendor", "shaboozey", "freecodecamp", "esl_csgo", "nl_kripp", "trump", "totalbiscuit"];
-// var popularChannels = ["dansgaming", "strippin", "sheriffeli", "comster404", "freecodecamp"];
 // Get channel and stream data for popular channels and update div with id #popular
 function initPopular() {	
 	popularChannels.forEach(function(channel) {
