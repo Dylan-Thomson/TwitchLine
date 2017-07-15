@@ -54,10 +54,6 @@ function initFeatured() {
 				selectDiv += counter;
 				counter = 0;
 			}
-<<<<<<< HEAD
-=======
-			// $("#featuredOutput").append(channelHTML(data.featured[i].stream.channel, data.featured[i].stream));
->>>>>>> origin/master
 		}
 	});
 }
